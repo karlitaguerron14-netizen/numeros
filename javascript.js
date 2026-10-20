@@ -1,51 +1,81 @@
-alert("Bienvenido a mi aplicacion");
 
-console.log("JavaScript cargado correctamente");
 
-const formulario = document.getElementById("formRegistro");
 
-formulario.addEventListener("submit", function(event) {
+/* Buscamos el formulario y esperamos que se presione
+el boton para verificar los numeros */
+document.getElementById("formNumeros").addEventListener("submit", function(event) {
 
-    // Evitar que la pagina se recargue
+    // Evitamos que la pagina se recargue
     event.preventDefault();
 
-    console.log("Formulario procesado");
+    // Obtenemos el primer numero ingresado
+    let num1 = parseInt(document.getElementById("num1").value);
 
-    // Capturar los valores
-    let numero1 = Number(document.getElementById("numero1").value);
-    let numero2 = Number(document.getElementById("numero2").value);
+    // Obtenemos el segundo numero ingresado
+    let num2 = parseInt(document.getElementById("num2").value);
 
-    // Realizar los calculos
-    let suma = numero1 + numero2;
-    let resta = numero1 - numero2;
-    let multiplicacion = numero1 * numero2;
+    // Buscamos donde mostrar los resultados
+    let resultado = document.getElementById("resultado");
 
-    // Calcular la division
-    let division;
+    // Creamos una variable para guardar los mensajes
+    let mensaje = "";
 
-    if (numero2 !== 0) {
-        division = numero1 / numero2;
+    // Verificamos si el primer numero es mayor, menor o igual
+    if (num1 > num2) {
+        mensaje += "El primer numero es mayor que el segundo.\n";
+    } else if (num1 < num2) {
+        mensaje += "El primer numero es menor que el segundo.\n";
     } else {
-        division = "No se puede dividir entre cero";
+        mensaje += "Los dos numeros son iguales.\n";
     }
 
-    // Mostrar resultados en consola
-    console.log("Primer numero: " + numero1);
-    console.log("Segundo numero: " + numero2);
-    console.log("Suma: " + suma);
-    console.log("Resta: " + resta);
-    console.log("Multiplicacion: " + multiplicacion);
-    console.log("Division: " + division);
+    // Verificamos si el primer numero es primo
+    let primo1 = true;
 
-    // Mostrar resultados en el HTML
-    const resultado = document.getElementById("resultado");
+    if (num1 < 2) {
+        primo1 = false;
+    }
 
-    resultado.innerHTML =
-        "<p>Primer numero: " + numero1 + "</p>" +
-        "<p>Segundo numero: " + numero2 + "</p>" +
-        "<p>Suma: " + suma + "</p>" +
-        "<p>Resta: " + resta + "</p>" +
-        "<p>Multiplicacion: " + multiplicacion + "</p>" +
-        "<p>Division: " + division + "</p>";
+    // Comprobamos si el primer numero tiene otros divisores
+    for (let i = 2; i < num1; i++) {
+        if (num1 % i === 0) {
+            primo1 = false;
+            break;
+        }
+    }
+
+    // Mostramos si el primer numero es primo
+    if (primo1) {
+        mensaje += num1 + " es un numero primo.\n";
+    } else {
+        mensaje += num1 + " no es un numero primo.\n";
+    }
+
+    // Verificamos si el segundo numero es primo
+    let primo2 = true;
+
+    if (num2 < 2) {
+        primo2 = false;
+    }
+
+    // Comprobamos si el segundo numero tiene otros divisores
+    for (let i = 2; i < num2; i++) {
+        if (num2 % i === 0) {
+            primo2 = false;
+            break;
+        }
+    }
+
+    // Mostramos si el segundo numero es primo
+    if (primo2) {
+        mensaje += num2 + " es un numero primo.";
+    } else {
+        mensaje += num2 + " no es un numero primo.";
+    }
+
+    // Mostramos los resultados en la pagina
+    resultado.textContent = mensaje;
 
 });
+
+
