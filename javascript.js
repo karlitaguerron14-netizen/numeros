@@ -1,0 +1,51 @@
+alert("Bienvenido a mi aplicacion");
+
+console.log("JavaScript cargado correctamente");
+
+const formulario = document.getElementById("formRegistro");
+
+formulario.addEventListener("submit", function(event) {
+
+    // Evitar que la pagina se recargue
+    event.preventDefault();
+
+    console.log("Formulario procesado");
+
+    // Capturar los valores
+    let numero1 = Number(document.getElementById("numero1").value);
+    let numero2 = Number(document.getElementById("numero2").value);
+
+    // Realizar los calculos
+    let suma = numero1 + numero2;
+    let resta = numero1 - numero2;
+    let multiplicacion = numero1 * numero2;
+
+    // Calcular la division
+    let division;
+
+    if (numero2 !== 0) {
+        division = numero1 / numero2;
+    } else {
+        division = "No se puede dividir entre cero";
+    }
+
+    // Mostrar resultados en consola
+    console.log("Primer numero: " + numero1);
+    console.log("Segundo numero: " + numero2);
+    console.log("Suma: " + suma);
+    console.log("Resta: " + resta);
+    console.log("Multiplicacion: " + multiplicacion);
+    console.log("Division: " + division);
+
+    // Mostrar resultados en el HTML
+    const resultado = document.getElementById("resultado");
+
+    resultado.innerHTML =
+        "<p>Primer numero: " + numero1 + "</p>" +
+        "<p>Segundo numero: " + numero2 + "</p>" +
+        "<p>Suma: " + suma + "</p>" +
+        "<p>Resta: " + resta + "</p>" +
+        "<p>Multiplicacion: " + multiplicacion + "</p>" +
+        "<p>Division: " + division + "</p>";
+
+});
